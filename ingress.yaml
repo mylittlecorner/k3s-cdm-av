@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /customers
+        pathType: Prefix
+        backend:
+          service:
+            name: cdm-service
+            port:
+              number: 3002

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cdm-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cdm
+  template:
+    metadata:
+      labels:
+        app: cdm
+    spec:
+      containers:
+      - name: cdm-container
+        image: localhost:5000/cdm-image:latest
+        ports:
+        - containerPort: 3002
